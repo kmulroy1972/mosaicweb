@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2d3748 100%);
+    background-attachment: fixed;
+    color: white;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(237, 137, 54, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(237, 137, 54, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+.mosaic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 72px;
+    height: 72px;
+}
+
+.tile {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+    border-radius: 7px;
+    transition: transform 0.3s ease;
+}
+
+.tile:hover {
+    transform: scale(1.1);
+}
+
+.logo h1 {
+    font-size: 4.2rem;
+    font-weight: 200;
+    letter-spacing: 0.3em;
+    color: white;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.services {
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.section-title {
+    color: #ed8936;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 60px;
+    opacity: 0.95;
+}
+
+.value-proposition {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.value-prop {
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 50px;
+    color: #f7fafc;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+    margin-bottom: 120px;
+    text-align: center;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    opacity: 0.97;
+}
+
+.lead {
+    font-size: 1.7rem !important;
+    font-weight: 400;
+    margin-bottom: 50px !important;
+    color: #f7fafc;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closing {
+    font-size: 1.6rem !important;
+    font-weight: 400;
+    margin-top: 60px !important;
+    color: #f7fafc;
+    font-style: italic;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.coming-soon {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.coming-soon h2 {
+    color: #ed8936;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 60px 30px;
+    }
+    
+    header {
+        margin-bottom: 70px;
+    }
+    
+    .logo h1 {
+        font-size: 3rem;
+    }
+    
+    .mosaic-grid {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+    
+    .value-prop {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+    
+    .description {
+        margin-bottom: 80px;
+    }
+    
+    .description p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    .lead {
+        font-size: 1.4rem !important;
+        margin-bottom: 40px !important;
+    }
+    
+    .closing {
+        font-size: 1.3rem !important;
+        margin-top: 50px !important;
+    }
+    
+    .coming-soon h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .mosaic-grid {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+}
