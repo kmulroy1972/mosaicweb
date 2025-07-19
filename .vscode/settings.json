@@ -1,0 +1,6 @@
+{
+    "cursor.ai.provider": "openai",
+    "cursor.ai.openai.apiKey": "your-openai-api-key-here",
+    "cursor.ai.openai.model": "gpt-4",
+    "cursor.ai.openai.baseURL": "https://api.openai.com/v1"
+} 

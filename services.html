@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - MOSAIC Intelligence</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="auth.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .services-grid {
+            display: grid;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .service-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .expand-icon {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-content {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .service-content.expanded {
+            max-height: 1000px;
+            padding: 30px;
+        }
+
+        .service-card.expanded .expand-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .service-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .service-details ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-details li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .service-details li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .influence-angle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .influence-angle h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .partnership-section {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin: 80px 0;
+            border-radius: 20px;
+        }
+
+        .partnership-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .partnership-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .share-button {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .share-button:hover {
+            background: #764ba2;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .service-header {
+                padding: 20px;
+            }
+            
+            .service-content.expanded {
+                padding: 20px;
+            }
+            
+            .expand-icon {
+                right: 20px;
+            }
+            
+            .share-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Intelligence. Strategy. Precision. Influence.</h1>
+            <p class="subtitle">Three pillars, one outcome: policy shaped in your favor.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header" onclick="toggleService(this)">
+                    <h2>Policy Intelligence</h2>
+                    <p class="service-description">Tailored, real-time monitoring of only the policy moves that threaten—or unlock—your health system's revenue.</p>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="service-content">
+                    <div class="service-details">
+                        <h3>What You Get</h3>
+                        <ul>
+                            <li>Monday-Morning Executive Brief – action-ready in-box by 7 a.m.</li>
+                            <li>Real-Time Impact Alerts – SMS/email within 30 minutes of a trigger</li>
+                            <li>Quarterly Board Decks – board-ready slides, narrative, and speaker notes</li>
+                            <li>24/7 Advisory Access – direct line to a senior analyst, no ticket queue</li>
+                        </ul>
+                        <div class="influence-angle">
+                            <h4>Influence Angle</h4>
+                            <p>Every alert flags who you must move and why—so influence campaigns can launch the same day.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header" onclick="toggleService(this)">
+                    <h2>Funding Radar</h2>
+                    <p class="service-description">Our AI-powered funding radar plus analyst insight show where earmarks, grants, and payment bonuses are actually landing—months before awards hit public trackers.</p>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="service-content">
+                    <div class="service-details">
+                        <h3>What You Get</h3>
+                        <ul>
+                            <li>Funding-trend dashboards</li>
+                            <li>Success-probability models</li>
+                            <li>ROI playbooks</li>
+                            <li>Competitive-intelligence snapshots</li>
+                        </ul>
+                        <div class="influence-angle">
+                            <h4>Influence Angle</h4>
+                            <p>Pinpoints which appropriators, agency leads, and coalition partners to engage before competitors even know an opportunity exists.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header" onclick="toggleService(this)">
+                    <h2>Strategic Influence</h2>
+                    <p class="service-description">We fuse crisis comms, thought-leadership, and Applecart's decision-maker graph to deliver campaigns that surround the exact people who control your fate.</p>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="service-content">
+                    <div class="service-details">
+                        <h3>What You Get</h3>
+                        <ul>
+                            <li>72-Hour Crisis Activation</li>
+                            <li>Quarterly Positioning Campaigns</li>
+                            <li>Impact-analytics dashboard</li>
+                            <li>Contractual reach guarantees</li>
+                        </ul>
+                        <div class="influence-angle">
+                            <h4>Influence Angle</h4>
+                            <p>Your narrative lands simultaneously in the inboxes, social feeds, and trusted peer networks of every relevant senator, staffer, regulator, and top-tier journalist—typically 500+ validated touchpoints per target.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="partnership-section">
+            <div class="container">
+                <h2>Powered by the MOSAIC × Applecart Alliance</h2>
+                <p>Our exclusive collaboration with Applecart's decision-maker network technology extends your voice beyond Capitol Hill's echo chamber and into the real-world relationships that guide votes, budgets, and headlines.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="container">
+                <h2>Ready to replace noise with influence you can measure?</h2>
+                <a href="#contact" class="cta-button">Request a Strategy Call</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="share-button" onclick="shareThisPage()">Share</a>
+
+    <script>
+        function toggleService(header) {
+            const serviceCard = header.parentElement;
+            const content = serviceCard.querySelector('.service-content');
+            
+            serviceCard.classList.toggle('expanded');
+            content.classList.toggle('expanded');
+        }
+
+        function shareThisPage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'MOSAIC Intelligence Services',
+                    text: 'Intelligence. Strategy. Precision. Influence.',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Page URL copied to clipboard!');
+            }
+        }
+
+        // Add Schema.org structured data for SEO
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is Policy Intelligence?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Tailored, real-time monitoring of only the policy moves that threaten—or unlock—your health system's revenue."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is Funding Radar?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our AI-powered funding radar plus analyst insight show where earmarks, grants, and payment bonuses are actually landing—months before awards hit public trackers."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is Strategic Influence?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We fuse crisis comms, thought-leadership, and Applecart's decision-maker graph to deliver campaigns that surround the exact people who control your fate."
+                    }
+                }
+            ]
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(schema);
+        document.head.appendChild(script);
+    </script>
+</body>
+</html> 
