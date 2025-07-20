@@ -142,6 +142,55 @@ header {
     margin-top: 80px;
 }
 
+.brochure-download {
+    text-align: center;
+    margin: 60px 0;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(237, 137, 54, 0.2);
+}
+
+.brochure-download h2 {
+    color: #ed8936;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    letter-spacing: 0.1em;
+}
+
+.brochure-download p {
+    color: #f7fafc;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(237, 137, 54, 0.3);
+    letter-spacing: 0.05em;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(237, 137, 54, 0.4);
+    background: linear-gradient(135deg, #dd6b20 0%, #c05621 100%);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
 .coming-soon h2 {
     color: #ed8936;
     font-size: 1.3rem;

@@ -173,12 +173,53 @@
             line-height: 1.6;
         }
 
+        .brochure-section {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin: 80px 0;
+            border-radius: 20px;
+        }
+
+        .brochure-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .brochure-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .download-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .download-btn:hover {
+            background: white;
+            color: #ed8936;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
         .cta-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 60px 0;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 0;
         }
 
         .cta-button {
@@ -334,6 +375,16 @@
             <div class="container">
                 <h2>Powered by the MOSAIC × Applecart Alliance</h2>
                 <p>Our exclusive collaboration with Applecart's decision-maker network technology extends your voice beyond Capitol Hill's echo chamber and into the real-world relationships that guide votes, budgets, and headlines.</p>
+            </div>
+        </div>
+
+        <div class="brochure-section">
+            <div class="container">
+                <h2>Learn More About MOSAIC</h2>
+                <p>Download our comprehensive one-page overview</p>
+                <button onclick="downloadBrochure()" class="download-btn">
+                    📄 Download Electronic Brochure
+                </button>
             </div>
         </div>
 

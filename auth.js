@@ -88,6 +88,28 @@
         addLogoutButton();
     }
     
-    // Make logout function available globally
+    // Download function for electronic brochure
+    function downloadBrochure() {
+        const link = document.createElement('a');
+        link.href = 'Final Mosaic One Pager.pdf';
+        link.download = 'MOSAIC-Electronic-Brochure.pdf';
+        link.target = '_blank';
+        
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Optional: Track download event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'download', {
+                'event_category': 'engagement',
+                'event_label': 'Electronic Brochure'
+            });
+        }
+    }
+    
+    // Make functions available globally
     window.mosaicLogout = logout;
+    window.downloadBrochure = downloadBrochure;
 })();
