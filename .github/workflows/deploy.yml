@@ -15,6 +15,20 @@ jobs:
       - name: Install rsync and sshpass
         run: sudo apt-get update && sudo apt-get install -y rsync sshpass
 
+      - name: Validate required secrets and variables
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          APP_ROOT: ${{ secrets.APP_ROOT }}
+        run: |
+          fail=false
+          if [ -z "${SERVER_HOST}" ]; then echo "ERROR: SERVER_HOST is empty"; fail=true; else echo "SERVER_HOST set"; fi
+          if [ -z "${SERVER_USER}" ]; then echo "ERROR: SERVER_USER is empty"; fail=true; else echo "SERVER_USER set"; fi
+          if [ -z "${SERVER_PASSWORD}" ]; then echo "ERROR: SERVER_PASSWORD is empty"; fail=true; else echo "SERVER_PASSWORD set"; fi
+          if [ -z "${APP_ROOT}" ]; then echo "ERROR: APP_ROOT is empty"; fail=true; else echo "APP_ROOT=$APP_ROOT"; fi
+          if [ "$fail" = true ]; then exit 1; fi
+
       - name: Prime known_hosts for SSH
         env:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
@@ -22,6 +36,19 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H "$SERVER_HOST" >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
+
+      - name: Test SSH connectivity
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          APP_ROOT: ${{ secrets.APP_ROOT }}
+        run: |
+          echo "Testing TCP connectivity to $SERVER_HOST:22"
+          (nc -z -w 5 "$SERVER_HOST" 22 && echo "Port 22 reachable") || echo "WARN: Port 22 check failed (continuing)"
+          echo "Attempting SSH command (no shell access required)"
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no -o ConnectTimeout=15 \
+            "$SERVER_USER@$SERVER_HOST" "echo connected; whoami; hostname; test -d \"$APP_ROOT\" && echo exists: $APP_ROOT || echo missing: $APP_ROOT"
 
       - name: Deploy via rsync
         env:
