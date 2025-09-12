@@ -1,3 +1,30 @@
+name: Deploy to Cloudways
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install rsync and sshpass
+        run: sudo apt-get update && sudo apt-get install -y rsync sshpass
+
+      - name: Deploy via rsync
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          APP_ROOT: ${{ secrets.APP_ROOT }}
+        run: |
+          sshpass -p "$SERVER_PASSWORD" rsync -av --delete \
+            --no-times --omit-dir-times --no-perms --no-owner --no-group \
+            --exclude ".git" --exclude ".github" \
+            ./ "$SERVER_USER@$SERVER_HOST:$APP_ROOT"/
 name: Deploy to Server
 
 on:
