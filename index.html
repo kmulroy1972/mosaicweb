@@ -3,31 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MOSAIC delivers health policy intelligence, strategy, and influence — custom insights, simply decoded.">
+    <meta property="og:title" content="MOSAIC – Health Policy Intelligence">
+    <meta property="og:description" content="Custom intelligence. Simply decoded. Influence you can measure.">
+    <meta property="og:image" content="https://mosaicpolicy.com/mosaic_logo_transparent.png">
+    <meta name="theme-color" content="#14b8a6">
     <title>Mosaic - Health Policy Intelligence</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="styles.css">
-    <script src="auth.js"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css?v=2025-09-12">
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo">
-                <div class="mosaic-grid">
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                    <div class="tile"></div>
-                </div>
-                <h1>MOSAIC</h1>
+                <img src="mosaic_logo_transparent.png?v=2025-09-12" alt="MOSAIC Logo" class="logo-image">
             </div>
-            <nav style="text-align:center; margin-bottom:40px;">
-                <a href="index.html" style="color:#ed8936; font-weight:600; text-decoration:none; font-size:1.1rem;">Home</a>
-                <a href="services.html" style="color:#ed8936; font-weight:600; text-decoration:none; font-size:1.1rem;">Services</a>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
             </nav>
         </header>
         <main>
@@ -57,4 +50,16 @@
         </main>
     </div>
 </body>
+<script>
+// Public brochure download helper (no auth required)
+function downloadBrochure() {
+    const link = document.createElement('a');
+    link.href = 'Final Mosaic One Pager.pdf';
+    link.download = 'MOSAIC-Electronic-Brochure.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
 </html>

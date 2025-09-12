@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Services by MOSAIC: policy intelligence, funding radar, and strategic influence for health systems.">
+    <meta property="og:title" content="Services – MOSAIC Intelligence">
+    <meta property="og:description" content="Intelligence. Strategy. Precision. Influence.">
+    <meta property="og:image" content="https://mosaicpolicy.com/mosaic_logo_transparent.png">
+    <meta name="theme-color" content="#14b8a6">
     <title>Services - MOSAIC Intelligence</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <script src="auth.js"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css?v=2025-09-12">
+    
     <style>
         * {
             margin: 0;
@@ -27,7 +33,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c4a6b 0%, #1a365d 100%);
             color: white;
             padding: 80px 0;
             text-align: center;
@@ -69,7 +75,7 @@
 
         .service-header {
             padding: 30px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #14b8a6 0%, #0ea5a2 100%);
             color: white;
             cursor: pointer;
             position: relative;
@@ -138,7 +144,7 @@
         }
 
         .influence-angle {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c4a6b 0%, #1a365d 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
@@ -174,7 +180,7 @@
         }
 
         .brochure-section {
-            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            background: linear-gradient(135deg, #14b8a6 0%, #0ea5a2 100%);
             color: white;
             padding: 60px 0;
             text-align: center;
@@ -209,13 +215,13 @@
 
         .download-btn:hover {
             background: white;
-            color: #ed8936;
+            color: #14b8a6;
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c4a6b 0%, #1a365d 100%);
             color: white;
             padding: 60px 0;
             text-align: center;
@@ -238,7 +244,7 @@
 
         .cta-button:hover {
             background: white;
-            color: #667eea;
+            color: #2c4a6b;
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
@@ -248,7 +254,7 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            background: #667eea;
+            background: #2c4a6b;
             color: white;
             padding: 10px 15px;
             border-radius: 50px;
@@ -260,7 +266,7 @@
         }
 
         .share-button:hover {
-            background: #764ba2;
+            background: #1a365d;
             transform: translateY(-50%) scale(1.05);
         }
 
@@ -294,6 +300,13 @@
 <body>
     <header>
         <div class="container">
+            <div class="logo" style="display: flex; align-items: center; justify-content: center; margin-bottom: 40px;">
+                <img src="mosaic_logo_transparent.png?v=2025-09-12" alt="MOSAIC Logo" style="max-height: 80px; height: auto; width: auto;">
+            </div>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+            </nav>
             <h1>Intelligence. Strategy. Precision. Influence.</h1>
             <p class="subtitle">Three pillars, one outcome: policy shaped in your favor.</p>
         </div>
@@ -405,6 +418,17 @@
             
             serviceCard.classList.toggle('expanded');
             content.classList.toggle('expanded');
+        }
+
+        // Public brochure download helper (no auth required)
+        function downloadBrochure() {
+            const link = document.createElement('a');
+            link.href = 'Final Mosaic One Pager.pdf';
+            link.download = 'MOSAIC-Electronic-Brochure.pdf';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         function shareThisPage() {

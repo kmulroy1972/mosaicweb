@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2d3748 100%);
+    background: linear-gradient(135deg, #1a365d 0%, #2c4a6b 50%, #2d3748 100%);
     background-attachment: fixed;
     color: white;
     min-height: 100vh;
@@ -21,8 +21,8 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(237, 137, 54, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(237, 137, 54, 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(20, 184, 166, 0.06) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
 }
@@ -44,37 +44,43 @@ header {
     text-align: center;
 }
 
+/* Top navigation */
+.site-nav {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.site-nav a {
+    color: #14b8a6;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin: 0 10px;
+}
+
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Logo container */
 .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 40px !important;
 }
 
-.mosaic-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    width: 72px;
-    height: 72px;
+/* Logo image */
+.logo-image {
+    max-height: 120px !important;
+    height: auto !important;
+    width: auto !important;
+    display: block !important;
+    transition: transform 0.3s ease !important;
 }
 
-.tile {
-    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
-    border-radius: 7px;
-    transition: transform 0.3s ease;
-}
-
-.tile:hover {
-    transform: scale(1.1);
-}
-
-.logo h1 {
-    font-size: 4.2rem;
-    font-weight: 200;
-    letter-spacing: 0.3em;
-    color: white;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+.logo-image:hover {
+    transform: scale(1.05) !important;
 }
 
 .services {
@@ -83,7 +89,7 @@ header {
 }
 
 .section-title {
-    color: #ed8936;
+    color: #14b8a6;
     font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 0.2em;
@@ -149,11 +155,11 @@ header {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(237, 137, 54, 0.2);
+    border: 1px solid rgba(20, 184, 166, 0.25);
 }
 
 .brochure-download h2 {
-    color: #ed8936;
+    color: #14b8a6;
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 15px;
@@ -168,7 +174,7 @@ header {
 }
 
 .download-btn {
-    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+    background: linear-gradient(135deg, #14b8a6 0%, #0ea5a2 100%);
     color: white;
     border: none;
     padding: 15px 30px;
@@ -177,14 +183,14 @@ header {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(237, 137, 54, 0.3);
+    box-shadow: 0 5px 15px rgba(20, 184, 166, 0.35);
     letter-spacing: 0.05em;
 }
 
 .download-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(237, 137, 54, 0.4);
-    background: linear-gradient(135deg, #dd6b20 0%, #c05621 100%);
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.45);
+    background: linear-gradient(135deg, #0ea5a2 0%, #0d9488 100%);
 }
 
 .download-btn:active {
@@ -192,7 +198,7 @@ header {
 }
 
 .coming-soon h2 {
-    color: #ed8936;
+    color: #14b8a6;
     font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 0.2em;
@@ -208,13 +214,8 @@ header {
         margin-bottom: 70px;
     }
     
-    .logo h1 {
-        font-size: 3rem;
-    }
-    
-    .mosaic-grid {
-        width: 60px;
-        height: 60px;
+    .logo-image {
+        max-height: 100px;
     }
     
     .section-title {
@@ -252,18 +253,7 @@ header {
 }
 
 @media (max-width: 480px) {
-    .logo {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .mosaic-grid {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .logo h1 {
-        font-size: 2rem;
+    .logo-image {
+        max-height: 80px;
     }
 }
