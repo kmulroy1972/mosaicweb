@@ -1,0 +1,11 @@
+# OS and editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+# Node
+node_modules/
+# Archives
+*.zip
+# GitHub
+.github/
