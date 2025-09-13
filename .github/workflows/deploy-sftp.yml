@@ -12,6 +12,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Validate SFTP secrets
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+        run: |
+          fail=false
+          [ -n "$SFTP_HOST" ] || { echo "ERROR: SFTP_HOST is empty"; fail=true; }
+          [ -n "$SFTP_USER" ] || { echo "ERROR: SFTP_USER is empty"; fail=true; }
+          [ -n "$SFTP_PASSWORD" ] || { echo "ERROR: SFTP_PASSWORD is empty"; fail=true; }
+          [ -n "$SFTP_REMOTE_PATH" ] || { echo "ERROR: SFTP_REMOTE_PATH is empty"; fail=true; }
+          if [ -z "$SFTP_PORT" ]; then echo "INFO: SFTP_PORT not set, defaulting to 22"; fi
+          if [ "$fail" = true ]; then exit 1; fi
+
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -22,11 +38,4 @@ jobs:
           local_path: ./
           remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
           sftp_only: true
-          delete: true
-          exclude: |
-            .git*
-            .github/**
-            config.php
-            gitautodeploy.php
-            **/.DS_Store
-            **/*.zip
+          delete_remote_files: false
