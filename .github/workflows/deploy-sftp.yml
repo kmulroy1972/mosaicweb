@@ -4,10 +4,17 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment name (for env-scoped Secrets)"
+        required: false
+        default: "Production"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Bind job to an Environment so env-scoped Secrets/Variables resolve
+    environment: ${{ inputs.environment || 'Production' }}
     env:
       # Allow using either repository Secrets or Variables
       DEPLOY_SFTP_HOST: ${{ secrets.SFTP_HOST || vars.SFTP_HOST }}
