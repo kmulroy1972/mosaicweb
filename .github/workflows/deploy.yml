@@ -59,7 +59,7 @@ jobs:
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -av --delete \
             --no-times --omit-dir-times --no-perms --no-owner --no-group \
-            --exclude ".git" --exclude ".github" \
+            --exclude ".git" --exclude ".github" --exclude "app/" \
             -e "ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no" \
             ./ "$SERVER_USER@$SERVER_HOST:$APP_ROOT"/
 

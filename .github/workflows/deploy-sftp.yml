@@ -36,6 +36,15 @@ jobs:
           if [ -z "${DEPLOY_SFTP_PORT}" ]; then echo "INFO: SFTP_PORT not set, defaulting to 22"; fi
           if [ "$fail" = true ]; then exit 1; fi
 
+      - name: Remove app directory if present (safeguard)
+        run: |
+          if [ -d "app" ]; then
+            echo "WARNING: app/ directory found, removing before deployment"
+            rm -rf app/
+          else
+            echo "INFO: app/ directory not found (expected)"
+          fi
+
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:

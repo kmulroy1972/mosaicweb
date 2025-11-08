@@ -10,6 +10,12 @@ node_modules/
 # GitHub
 .github/
 
+# Python app directory (different project - WSC analytics)
+app/
+
+# Local secrets (do not commit)
+config.php
+.env
 # Local test files
 test-logo.html
 testfile.txt
