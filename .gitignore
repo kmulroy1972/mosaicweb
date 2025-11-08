@@ -7,8 +7,6 @@
 node_modules/
 # Archives
 *.zip
-# GitHub
-.github/
 
 # Python app directory (different project - WSC analytics)
 app/
