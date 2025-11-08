@@ -1,8 +1,9 @@
 name: Deploy via SFTP (Cloudways)
 
 on:
-  push:
-    branches: [ "main" ]
+  # Disabled - use deploy.yml (rsync) instead
+  # push:
+  #   branches: [ "main" ]
   workflow_dispatch:
     inputs:
       environment:
