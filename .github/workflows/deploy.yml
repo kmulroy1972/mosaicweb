@@ -60,6 +60,9 @@ jobs:
           sshpass -p "$SERVER_PASSWORD" rsync -av --delete \
             --no-times --omit-dir-times --no-perms --no-owner --no-group \
             --exclude ".git" --exclude ".github" --exclude "app/" \
+            --exclude "dashboard/" --exclude "dashboard-new/" \
+            --exclude "remote/" --exclude "pst_to_eml/" \
+            --exclude "*.py" --exclude "requirements.txt" \
             -e "ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no" \
             ./ "$SERVER_USER@$SERVER_HOST:$APP_ROOT"/
 
