@@ -36,14 +36,30 @@ jobs:
           if [ -z "${DEPLOY_SFTP_PORT}" ]; then echo "INFO: SFTP_PORT not set, defaulting to 22"; fi
           if [ "$fail" = true ]; then exit 1; fi
 
-      - name: Remove app directory if present (safeguard)
+      - name: Remove unwanted directories and files (safeguard)
         run: |
+          # Remove app directory (WSC analytics - different project)
           if [ -d "app" ]; then
             echo "WARNING: app/ directory found, removing before deployment"
             rm -rf app/
-          else
-            echo "INFO: app/ directory not found (expected)"
           fi
+          # Remove dashboard directories (wrong project)
+          if [ -d "dashboard" ]; then
+            echo "WARNING: dashboard/ directory found, removing before deployment"
+            rm -rf dashboard/
+          fi
+          if [ -d "dashboard-new" ]; then
+            echo "WARNING: dashboard-new/ directory found, removing before deployment"
+            rm -rf dashboard-new/
+          fi
+          # Remove remote mirror (shouldn't be deployed)
+          if [ -d "remote" ]; then
+            echo "INFO: remote/ directory found, excluding from deployment"
+          fi
+          # Remove Python files
+          find . -maxdepth 1 -name "*.py" -type f -delete 2>/dev/null || true
+          find . -maxdepth 1 -name "requirements.txt" -type f -delete 2>/dev/null || true
+          echo "Cleanup complete"
 
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -55,4 +71,16 @@ jobs:
           local_path: ./
           remote_path: ${{ env.DEPLOY_SFTP_REMOTE_PATH }}
           sftp_only: true
-          delete_remote_files: false
+          delete_remote_files: true
+          exclude: |
+            **/.git
+            **/.github
+            **/app
+            **/dashboard
+            **/dashboard-new
+            **/remote
+            **/pst_to_eml
+            **/*.py
+            **/requirements.txt
+            **/node_modules
+            **/.DS_Store
